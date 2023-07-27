@@ -1,22 +1,27 @@
 import React, { useRef, useEffect, useState } from 'react';
-import WebViewer from '@pdftron/webviewer';
+import WebViewer, { WebViewerInstance } from '@pdftron/webviewer';
 
 const WebViewerModal = () => {
     const viewer = useRef(null);
+    const wvInstance = useRef();
 
-  // if using a class, equivalent of componentDidMount 
   useEffect(() => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/PDFTRON_about.pdf',
+        initialDoc: "/files/PDFTRON_about.pdf"
       },
       viewer.current,
     ).then((instance) => {
+      if(instance){
+        wvInstance.current = instance 
+      }
     });
 
     return () => {
-        viewer.current = null;
+      wvInstance.current.Core.documentViewer.dispose();
+      viewer.current = null;
+      wvInstance.current = null;
     }
   }, []);
 
