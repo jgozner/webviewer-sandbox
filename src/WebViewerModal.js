@@ -19,7 +19,7 @@ const WebViewerModal = () => {
     });
 
     return () => {
-      wvInstance.current.Core.documentViewer.dispose();
+      wvInstance.current.UI.dispose();
       viewer.current = null;
       wvInstance.current = null;
     }
