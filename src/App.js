@@ -24,7 +24,7 @@ const App = () => {
         onRequestClose={closeModal}
         contentLabel="Modal"
       >
-        <WebViewerModal />
+        { modalIsOpen ? <WebViewerModal /> : null }
       </Modal>
     </div>
   );

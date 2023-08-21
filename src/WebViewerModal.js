@@ -4,7 +4,6 @@ import WebViewer, { WebViewerInstance } from '@pdftron/webviewer';
 const WebViewerModal = () => {
     const viewer = useRef(null);
     const wvInstance = useRef();
-
   useEffect(() => {
     WebViewer(
       {
@@ -14,20 +13,17 @@ const WebViewerModal = () => {
       viewer.current,
     ).then((instance) => {
       if(instance){
-        wvInstance.current = instance 
+        wvInstance.current = instance
       }
     });
-
     return () => {
       wvInstance.current.UI.dispose();
       viewer.current = null;
       wvInstance.current = null;
     }
   }, []);
-
   return (
      <div className="webviewer" ref={viewer} style={{width: "100%", height: "100%"}}></div>
   );
 };
-
 export default WebViewerModal;
